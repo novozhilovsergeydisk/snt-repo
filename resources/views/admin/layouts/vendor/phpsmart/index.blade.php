@@ -157,6 +157,15 @@
         <li class="sidenav-divider mb-1"></li>
 
         <li class="sidenav-item">
+          <a href="/admin/upload/balance-list" class="sidenav-link {{ Request::path() == 'admin/electric-meter/get-form' ? 'active' : '' }}">
+            <i class="sidenav-icon ion ion-md-cloud-upload"></i>
+            <span>Загрузка показаний счетчиков</span>
+          </a>
+        </li>
+
+        <li class="sidenav-divider mb-1"></li>
+
+        <li class="sidenav-item">
           <a href="/admin/logs" class="sidenav-link {{ Request::path() == 'admin/logs' ? 'active' : '' }}">
             <i class="sidenav-icon ion ion-ios-information-circle-outline"></i>
             <span>Статистика активности пользователей</span>
