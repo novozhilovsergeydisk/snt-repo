@@ -9,6 +9,8 @@ class ElectricMeterController extends Controller
 {
     public function getForm()
     {
+        dump('test');
+        return;
         return view('admin.electric-meter-upload-form', ['upload_active' => 'active']);
     }
 
@@ -307,195 +309,197 @@ class ElectricMeterController extends Controller
 
     public function uploadExcel(Request $request)
     {
-        dd('uploadExcel');
 
-        if (true) {
-            $start_date = $request->start_date;
-            $end_date = $request->end_date;
-        } else {
-            return redirect()->back()->with('errors', 'Выберите даты начала и конца периода периода');
-        }
+        return;
+//        dd('uploadExcel');
 
-        $path_to_xlsx = '';
-
-        try {
-            foreach ($request->file() as $file) {
-                foreach ($file as $f) {
-                    $f->move(storage_path('images'), time().'_'.$f->getClientOriginalName());
-                    $path_to_xlsx = storage_path('images').'/'.time().'_'.$f->getClientOriginalName();
-                }
-            }
-
-
-            if (!file_exists($path_to_xlsx)) {
-                return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
-            }
-
-            $php_excel = \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request, $start_date, $end_date) {
-                $tables = [];
-
-//				return $tables;
-
-                foreach ($reader->getWorksheetIterator() as $worksheet) {
-                    // выгружаем данные из объекта в массив
-                    $tables[] = $worksheet->toArray();
-                }
-
-                $code_1c = '';
-                $id = 1;
-
-//				dump($tables);
-
-//                return "Debug ".__LINE__;
-
-                // Цикл по листам Excel-файла
-                foreach( $tables as $table ) {
-                    // Цикл по строкам
-
-                    foreach($table as $row) {
-                        $excludes = [
-//						'Выводимые данные:',
-//						'Счет',
-//						'Сортировка:',
-//						'Назначение целевых средств',
-//						'Работники организаций.Код',
-//						'76.10',
-                            'Итого',
-                            ''
-                        ];
-
-                        $excludes_dump = [
-                            'СНТ "Загорье"',
-                            'Оборотно-сальдовая ведомость по счету 76.10 за 01.01.2016 - 06.11.2017',
-                        ];
-
-                        if (in_array($row[0], $excludes)) {
-                            continue;
-                        }
-
-                        if (isset($row[0])) {
-//						if (in_array($row[0], $excludes_dump)) {
-//							echo '<tr><td colspan="9">';
-//							dump($row[0]);
-//							echo '</td></tr>';
-//							continue;
-//						}
-                        }
-
-                        // Цикл по колонкам
-                        $j = 1;
-                        $aef_id = '';
-                        $user_id = '';
-                        $client_id = '';
-                        $accruals = '';
-                        $payments = '';
-
-//						dump($row);
-
-                        foreach( $row as $col ) {
-//							dump($col);
-
-                            if ($j == 1) {
-                                $mystring = $col;
-                                $findme   = '00-';
-                                $pos = strpos($mystring, $findme);
-
-                                if ($pos !== false) {
-                                    $code_1c = $col;
-                                } else {
-                                    $sql = "SELECT id FROM aef WHERE name = '".$col."'";
-                                    $aef = DB::select($sql);
-
-                                    if (empty($aef)) {
-                                        $sql__ = "SELECT max(id) AS max_id FROM aef";
-                                        $aef__ = DB::select($sql__);
-                                        $params__ = [
-                                            'id' => $aef__[0]->max_id + 1,
-                                            'name' => $col,
-                                            'is_active' => 1,
-                                        ];
-
-                                        DB::table('aef')->insert($params__);
-                                    } else {
-                                        $aef_id = $aef[0]->id;
-//										$user_id = Auth::id();
-                                        $sql = "SELECT id FROM clients WHERE code_1c = '".$code_1c."'";
-                                        $client_collections = DB::select($sql);
-
-                                        if (isset($client_collections[0]->id)) {
-                                            $client_id = $client_collections[0]->id;
-                                        }
-                                    }
-                                }
-
-                            }
-
-                            if ($j == 4) {
-                                if ($aef_id != '') {
-                                    $accruals = $col;
-
-//									echo '<td>';
-//									dump($aef_id.' '.$user_id.' '.$client_id.' '.$col);
-//									echo '</td>';
-                                }
-                            }
-
-                            if ($j == 5) {
-                                if ($aef_id != '') {
-                                    $payments = $col;
-
-                                    $accruals = str_replace(',', '', $accruals);
-                                    $payments = str_replace(',', '', $payments);
-
-                                    if ($accruals == '') {
-                                        $accruals = 0;
-                                    }
-
-                                    if ($payments == '') {
-                                        $payments = 0;
-                                    }
-
-                                    $params[] = [
-                                        //'id' => $id,
-                                        'client_id' => $client_id,
-                                        'aef_id' => $aef_id,
-                                        'accruals' => $accruals,
-                                        'payments' => $payments,
-                                        'start_date' => date('Y-m-d'),
-                                        'end_date' => date('Y-m-d'),
-                                    ];
-
-                                    $id++;
-                                }
-                            }
-
-                            $j++;
-                        }
-                    }
-                }
-
-
-                try {
-//                dump($params);
-                    DB::table('dealings')->truncate();
-                    DB::table('dealings')->insert($params);
-                } catch (Exception $e) {
-                    echo $e->getMessage(), PHP_EOL;
-                }
-
-
-//				DB::table('dealings')->truncate();
-//				DB::table('dealings')->insert($params);
-
-                return redirect()->back()->with('success', 'Файл успешно загружен');
-            });
-
-//			dump($php_excel);
-
-            return "Данные успешно занесены в базу данных-.";
-
-        } catch (Exception $e) {
-            echo $e->getMessage(), PHP_EOL;
-        }
+//        if (true) {
+//            $start_date = $request->start_date;
+//            $end_date = $request->end_date;
+//        } else {
+//            return redirect()->back()->with('errors', 'Выберите даты начала и конца периода периода');
+//        }
+//
+//        $path_to_xlsx = '';
+//
+//        try {
+//            foreach ($request->file() as $file) {
+//                foreach ($file as $f) {
+//                    $f->move(storage_path('images'), time().'_'.$f->getClientOriginalName());
+//                    $path_to_xlsx = storage_path('images').'/'.time().'_'.$f->getClientOriginalName();
+//                }
+//            }
+//
+//
+//            if (!file_exists($path_to_xlsx)) {
+//                return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
+//            }
+//
+//            $php_excel = \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request, $start_date, $end_date) {
+//                $tables = [];
+//
+////				return $tables;
+//
+//                foreach ($reader->getWorksheetIterator() as $worksheet) {
+//                    // выгружаем данные из объекта в массив
+//                    $tables[] = $worksheet->toArray();
+//                }
+//
+//                $code_1c = '';
+//                $id = 1;
+//
+////				dump($tables);
+//
+////                return "Debug ".__LINE__;
+//
+//                // Цикл по листам Excel-файла
+//                foreach( $tables as $table ) {
+//                    // Цикл по строкам
+//
+//                    foreach($table as $row) {
+//                        $excludes = [
+////						'Выводимые данные:',
+////						'Счет',
+////						'Сортировка:',
+////						'Назначение целевых средств',
+////						'Работники организаций.Код',
+////						'76.10',
+//                            'Итого',
+//                            ''
+//                        ];
+//
+//                        $excludes_dump = [
+//                            'СНТ "Загорье"',
+//                            'Оборотно-сальдовая ведомость по счету 76.10 за 01.01.2016 - 06.11.2017',
+//                        ];
+//
+//                        if (in_array($row[0], $excludes)) {
+//                            continue;
+//                        }
+//
+//                        if (isset($row[0])) {
+////						if (in_array($row[0], $excludes_dump)) {
+////							echo '<tr><td colspan="9">';
+////							dump($row[0]);
+////							echo '</td></tr>';
+////							continue;
+////						}
+//                        }
+//
+//                        // Цикл по колонкам
+//                        $j = 1;
+//                        $aef_id = '';
+//                        $user_id = '';
+//                        $client_id = '';
+//                        $accruals = '';
+//                        $payments = '';
+//
+////						dump($row);
+//
+//                        foreach( $row as $col ) {
+////							dump($col);
+//
+//                            if ($j == 1) {
+//                                $mystring = $col;
+//                                $findme   = '00-';
+//                                $pos = strpos($mystring, $findme);
+//
+//                                if ($pos !== false) {
+//                                    $code_1c = $col;
+//                                } else {
+//                                    $sql = "SELECT id FROM aef WHERE name = '".$col."'";
+//                                    $aef = DB::select($sql);
+//
+//                                    if (empty($aef)) {
+//                                        $sql__ = "SELECT max(id) AS max_id FROM aef";
+//                                        $aef__ = DB::select($sql__);
+//                                        $params__ = [
+//                                            'id' => $aef__[0]->max_id + 1,
+//                                            'name' => $col,
+//                                            'is_active' => 1,
+//                                        ];
+//
+//                                        DB::table('aef')->insert($params__);
+//                                    } else {
+//                                        $aef_id = $aef[0]->id;
+////										$user_id = Auth::id();
+//                                        $sql = "SELECT id FROM clients WHERE code_1c = '".$code_1c."'";
+//                                        $client_collections = DB::select($sql);
+//
+//                                        if (isset($client_collections[0]->id)) {
+//                                            $client_id = $client_collections[0]->id;
+//                                        }
+//                                    }
+//                                }
+//
+//                            }
+//
+//                            if ($j == 4) {
+//                                if ($aef_id != '') {
+//                                    $accruals = $col;
+//
+////									echo '<td>';
+////									dump($aef_id.' '.$user_id.' '.$client_id.' '.$col);
+////									echo '</td>';
+//                                }
+//                            }
+//
+//                            if ($j == 5) {
+//                                if ($aef_id != '') {
+//                                    $payments = $col;
+//
+//                                    $accruals = str_replace(',', '', $accruals);
+//                                    $payments = str_replace(',', '', $payments);
+//
+//                                    if ($accruals == '') {
+//                                        $accruals = 0;
+//                                    }
+//
+//                                    if ($payments == '') {
+//                                        $payments = 0;
+//                                    }
+//
+//                                    $params[] = [
+//                                        //'id' => $id,
+//                                        'client_id' => $client_id,
+//                                        'aef_id' => $aef_id,
+//                                        'accruals' => $accruals,
+//                                        'payments' => $payments,
+//                                        'start_date' => date('Y-m-d'),
+//                                        'end_date' => date('Y-m-d'),
+//                                    ];
+//
+//                                    $id++;
+//                                }
+//                            }
+//
+//                            $j++;
+//                        }
+//                    }
+//                }
+//
+//
+//                try {
+////                dump($params);
+//                    DB::table('dealings')->truncate();
+//                    DB::table('dealings')->insert($params);
+//                } catch (Exception $e) {
+//                    echo $e->getMessage(), PHP_EOL;
+//                }
+//
+//
+////				DB::table('dealings')->truncate();
+////				DB::table('dealings')->insert($params);
+//
+//                return redirect()->back()->with('success', 'Файл успешно загружен');
+//            });
+//
+////			dump($php_excel);
+//
+//            return "Данные успешно занесены в базу данных-.";
+//
+//        } catch (Exception $e) {
+//            echo $e->getMessage(), PHP_EOL;
+//        }
     }
 }
