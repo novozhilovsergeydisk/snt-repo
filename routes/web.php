@@ -74,7 +74,9 @@ Route::post('/billboard/add',['as' => 'billboard_add', 'middleware'=>'App\Http\M
 
     Route::get('/typical-project', ['as' => 'typical_project', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\AdminController@TypicalProject']);
 
-    Route::get('/electric-meter-list/upload-form', ['as' => 'electric-meter-list', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\ElectricMeterController@getForm']);
+    Route::get('/electric-meter/get-form', ['as' => 'electric-meter-get-form', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\ElectricMeterController@getForm']);
+
+    Route::get('/electric-meter/upload-excel', ['as' => 'electric-meter-upload-excel', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\ElectricMeterController@upladExcel']);
 
 });
 

@@ -109,28 +109,6 @@ class ElectricMeterController extends Controller
 
         return;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         $open_mode = 'r';
 
         $csv = Reader::createFromPath($inputFileName, $open_mode);
@@ -327,9 +305,11 @@ class ElectricMeterController extends Controller
         return __METHOD__;
     }
 
-    public function upload(Request $request)
+    public function uploadExcel(Request $request)
     {
-        if (($request->start_date) && ($request->end_date)) {
+        dd('uploadExcel');
+
+        if (true) {
             $start_date = $request->start_date;
             $end_date = $request->end_date;
         } else {
@@ -337,8 +317,6 @@ class ElectricMeterController extends Controller
         }
 
         $path_to_xlsx = '';
-
-
 
         try {
             foreach ($request->file() as $file) {
@@ -519,7 +497,5 @@ class ElectricMeterController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage(), PHP_EOL;
         }
-
-//		return "Данные успешно занесены в базу данных.";
     }
 }
