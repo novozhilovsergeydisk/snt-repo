@@ -23,7 +23,7 @@
                 </h3>
             </div>
             <div class="card-body">
-                <form style="padding: 12px !important;" class="form-horizontal" method="post" action="{{ route('upload-electric-meter-excel') }}" enctype="multipart/form-data">
+                <form style="padding: 12px !important;" class="form-horizontal" method="post" action="{{ route('electric-meter-upload-excel') }}" enctype="multipart/form-data">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
                     <!-- Инициализация виджета "Bootstrap datetimepicker" -->
