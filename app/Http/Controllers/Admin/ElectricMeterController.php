@@ -310,7 +310,7 @@ class ElectricMeterController extends Controller
     public function uploadExcel(Request $request)
     {
 
-        redirect()->back()->with('errors', 'Joker');
+        return redirect()->back()->with('errors', 'Joker');
 
 //        dump('uploadExcel');
 //
