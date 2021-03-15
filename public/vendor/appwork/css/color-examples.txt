@@ -1,0 +1,7 @@
+color
+#a3a4a6
+#fff
+
+
+background-color
+#f1f1f2

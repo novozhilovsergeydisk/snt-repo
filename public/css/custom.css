@@ -1,0 +1,23 @@
+.w-280 {
+    width: 280px !important;
+}
+
+.control-red {
+    border: 1px solid red;
+}
+
+.control-green {
+    border: 1px solid green;
+}
+
+.element-hidden {
+    display: none !important;
+}
+
+.green {
+    color: green;
+}
+
+.pdf-icon {
+    width: 64px;
+}
