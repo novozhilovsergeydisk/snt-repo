@@ -105,3 +105,6 @@ Route::get('/contacts', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/electric-meter-list/', ['as' => 'electric-meter-list', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\ElectricMeterController@index']);
+
