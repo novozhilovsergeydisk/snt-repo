@@ -74,6 +74,8 @@ Route::post('/billboard/add',['as' => 'billboard_add', 'middleware'=>'App\Http\M
 
     Route::get('/typical-project', ['as' => 'typical_project', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\AdminController@TypicalProject']);
 
+    Route::get('/electric-meter-list', ['as' => 'electric-meter-list', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\ElectricMeterController@index']);
+
 });
 
 Route::get('/logout', function () {
@@ -105,6 +107,3 @@ Route::get('/contacts', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/electric-meter-list/', ['as' => 'electric-meter-list', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\ElectricMeterController@index']);
-
