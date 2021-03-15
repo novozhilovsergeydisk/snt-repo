@@ -9,7 +9,7 @@ class ElectricMeterController extends Controller
 {
     public function getForm()
     {
-        return view('admin.upload-files', ['upload_active' => 'active']);
+        return view('admin.electric-meter-upload-form', ['upload_active' => 'active']);
     }
 
     public function getFormClients()
