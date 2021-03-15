@@ -19,7 +19,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <h3 class="panel-heading">
-                    <span class="text-muted">Форма загрузки excel файла</span>
+                    <span class="text-muted">Форма загрузки excel файла с показаниями счетчиков</span>
                 </h3>
             </div>
             <div class="card-body">
