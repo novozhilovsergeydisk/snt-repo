@@ -321,25 +321,22 @@ class ElectricMeterController extends Controller
 //            return redirect()->back()->with('errors', 'Выберите даты начала и конца периода периода');
 //        }
 //
-        $path_electro_counter = '';
+        $path_to_xlsx = '';
 
         try {
             foreach ($request->file() as $file) {
                 foreach ($file as $f) {
-//                    $f->move(storage_path('images'), time().'_'.$f->getClientOriginalName());
-                    $path_electro_counter = storage_path('files/electro_counter').'/'.time().'_'.$f->getClientOriginalName();
+                    $f->move(storage_path('images'), time().'_'.$f->getClientOriginalName());
+                    $path_to_xlsx = storage_path('images').'/'.time().'_'.$f->getClientOriginalName();
                 }
             }
 
 
-            print_r($path_electro_counter);
-
-
-            if (!file_exists($path_electro_counter)) {
+            if (!file_exists($path_to_xlsx)) {
                 return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
             }
 
-            \Maatwebsite\Excel\Facades\Excel::load($path_electro_counter, function($reader) use($request) {
+            \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request) {
                 $tables = [];
 
 //				return $tables;
@@ -359,9 +356,7 @@ class ElectricMeterController extends Controller
                 $code_1c = '';
                 $id = 1;
 
-				dump($tables);
-
-				return;
+//				dump($tables);
 
 //                return "Debug ".__LINE__;
 
