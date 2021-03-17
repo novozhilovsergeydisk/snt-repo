@@ -326,17 +326,20 @@ class ElectricMeterController extends Controller
         try {
             foreach ($request->file() as $file) {
                 foreach ($file as $f) {
-                    $f->move(storage_path('images'), time().'_'.$f->getClientOriginalName());
-                    $path_to_xlsx = storage_path('images').'/'.time().'_'.$f->getClientOriginalName();
+//                    $f->move(storage_path('images'), time().'_'.$f->getClientOriginalName());
+                    $path_electro_counter = storage_path('files/electro_counter').'/'.time().'_'.$f->getClientOriginalName();
                 }
             }
 
 
-            if (!file_exists($path_to_xlsx)) {
+            print_r($path_electro_counter);
+
+
+            if (!file_exists($path_electro_counter)) {
                 return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
             }
 
-            \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request) {
+            \Maatwebsite\Excel\Facades\Excel::load($path_electro_counter, function($reader) use($request) {
                 $tables = [];
 
 //				return $tables;
