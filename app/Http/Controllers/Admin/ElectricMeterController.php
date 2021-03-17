@@ -346,6 +346,11 @@ class ElectricMeterController extends Controller
                     $tables[] = $worksheet->toArray();
                 }
 
+                $sql = "SELECT * FROM clients";
+                $r = DB::select($sql);
+
+                dump($r);
+
 //                dump($tables);
 
                 $code_1c = '';
