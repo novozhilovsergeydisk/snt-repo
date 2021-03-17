@@ -359,7 +359,9 @@ class ElectricMeterController extends Controller
                 $code_1c = '';
                 $id = 1;
 
-//				dump($tables);
+				dump($tables);
+
+				return;
 
 //                return "Debug ".__LINE__;
 
