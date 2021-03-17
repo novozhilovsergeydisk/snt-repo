@@ -326,7 +326,7 @@ class ElectricMeterController extends Controller
         try {
             foreach ($request->file() as $file) {
                 foreach ($file as $f) {
-                    $f->move(storage_path('files/electro_counter'), time().'_'.$f->getClientOriginalName());
+//                    $f->move(storage_path('files/electro_counter'), time().'_'.$f->getClientOriginalName());
                     $path_to_xlsx = storage_path('files/electro_counter').'/'.time().'_'.$f->getClientOriginalName();
                 }
             }
