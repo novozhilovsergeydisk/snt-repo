@@ -321,7 +321,7 @@ class ElectricMeterController extends Controller
 //            return redirect()->back()->with('errors', 'Выберите даты начала и конца периода периода');
 //        }
 //
-        $path_to_xlsx = '';
+        $path_electro_counter = '';
 
         try {
             foreach ($request->file() as $file) {
