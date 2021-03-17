@@ -360,9 +360,7 @@ class ElectricMeterController extends Controller
                     // Цикл по строкам
 
                     foreach($table as $row) {
-                        dump($row[2]);
-                        dump($row[9]);
-                        dump($row[10]);
+                        dump($row[2].' --- '.$row[9].' --- '.$row[10]);
                         echo "\n";
                     }
 
