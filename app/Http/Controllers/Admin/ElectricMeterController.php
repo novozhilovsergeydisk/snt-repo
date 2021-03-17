@@ -346,7 +346,7 @@ class ElectricMeterController extends Controller
                     $tables[] = $worksheet->toArray();
                 }
 
-                dump($tables);
+//                dump($tables);
 
                 $code_1c = '';
                 $id = 1;
@@ -358,6 +358,10 @@ class ElectricMeterController extends Controller
                 // Цикл по листам Excel-файла
                 foreach( $tables as $table ) {
                     // Цикл по строкам
+
+                    foreach($table as $row) {
+                        dump($row);
+                    }
 
 //                    foreach($table as $row) {
 //                        $excludes = [
