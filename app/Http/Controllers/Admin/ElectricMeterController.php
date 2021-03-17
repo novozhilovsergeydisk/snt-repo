@@ -335,7 +335,7 @@ class ElectricMeterController extends Controller
                 return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
             }
 
-            \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request, $start_date, $end_date) {
+            \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request) {
                 $tables = [];
 
 //				return $tables;
