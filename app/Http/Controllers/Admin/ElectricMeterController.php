@@ -483,7 +483,7 @@ class ElectricMeterController extends Controller
 
 
                 try {
-                dump($params);
+                    dump('try');
 //                    DB::table('dealings')->truncate();
 //                    DB::table('dealings')->insert($params);
                 } catch (Exception $e) {
