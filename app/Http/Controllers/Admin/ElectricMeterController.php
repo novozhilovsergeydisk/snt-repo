@@ -335,7 +335,7 @@ class ElectricMeterController extends Controller
                 return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
             }
 
-            $php_excel = \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request, $start_date, $end_date) {
+            \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request, $start_date, $end_date) {
                 $tables = [];
 
 //				return $tables;
@@ -344,6 +344,8 @@ class ElectricMeterController extends Controller
                     // выгружаем данные из объекта в массив
                     $tables[] = $worksheet->toArray();
                 }
+
+                dump($tables);
 
                 $code_1c = '';
                 $id = 1;
@@ -419,7 +421,7 @@ class ElectricMeterController extends Controller
                                             'is_active' => 1,
                                         ];
 
-                                        DB::table('aef')->insert($params__);
+//                                        DB::table('aef')->insert($params__);
                                     } else {
                                         $aef_id = $aef[0]->id;
 //										$user_id = Auth::id();
