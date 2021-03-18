@@ -360,11 +360,12 @@ class ElectricMeterController extends Controller
                     // Цикл по строкам
 
                     foreach($table as $row) {
+                        dump($table);
                         $electro_counter = $row[2];
-                        $sql = "SELECT * FROM clients WHERE electro_counter = " . $electro_counter;
-                        $r = DB::select($sql);
-
-                        dump($r);
+//                        $sql = "SELECT * FROM clients WHERE electro_counter = " . $electro_counter;
+//                        $r = DB::select($sql);
+//
+//                        dump($r);
 
 //                        dump($row[2].' --- '.$row[9].' --- '.$row[10]);
                         echo "\n";
