@@ -381,8 +381,8 @@ class ElectricMeterController extends Controller
                         $params[] = [
                             //'id' => $id,
                             'user_id' => $user_id,
-                            'L' => $aef_id,
-                            'M' => $accruals,
+                            'L' => $l,
+                            'M' => $m,
                             'created_at' => date('Y-m-d'),
                         ];
 
