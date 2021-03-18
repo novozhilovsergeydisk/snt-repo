@@ -379,7 +379,7 @@ class ElectricMeterController extends Controller
 //                        dump($now);
 
                         $params[] = [
-                            //'id' => $id,
+                            'id' => null,
                             'user_id' => $user_id,
                             'L' => $l,
                             'M' => $m,
