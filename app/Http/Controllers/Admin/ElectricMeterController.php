@@ -46,9 +46,9 @@ class ElectricMeterController extends Controller
 
         return;
 
-        $path_to_xlsx = '/home/u449664/sntzagorie.ru/www/storage/app/public/print_act/act.xlsx';
+        $path_excel = '/home/u449664/sntzagorie.ru/www/storage/app/public/print_act/act.xlsx';
 
-        $maat = \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) {
+        $maat = \Maatwebsite\Excel\Facades\Excel::load($path_excel, function($reader) {
             foreach ($reader->getWorksheetIterator() as $worksheet) {
 //							dump((array)$worksheet);
                 // выгружаем данные из объекта в массив
@@ -156,9 +156,9 @@ class ElectricMeterController extends Controller
     {
         try {
 
-            $path_to_xlsx = '/var/www/snt/storage/images/список.xlsx';
+            $path_excel = '/var/www/snt/storage/images/список.xlsx';
 
-            $maat = \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) {
+            $maat = \Maatwebsite\Excel\Facades\Excel::load($path_excel, function($reader) {
                 foreach ($reader->getWorksheetIterator() as $worksheet) {
 //							dump($worksheet->toArray());
                     // выгружаем данные из объекта в массив
@@ -266,9 +266,9 @@ class ElectricMeterController extends Controller
 //
 //					$f->move(storage_path('images'), $client_original_name);
 //
-//					$path_to_xlsx = '/var/www/snt/storage/images/список.xlsx';
-//					$tables = [$path_to_xlsx];
-//					$maat = \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) {
+//					$path_excel = '/var/www/snt/storage/images/список.xlsx';
+//					$tables = [$path_excel];
+//					$maat = \Maatwebsite\Excel\Facades\Excel::load($path_excel, function($reader) {
 //						foreach ($reader->getWorksheetIterator() as $worksheet) {
 ////							dump($worksheet->toArray());
 //							// выгружаем данные из объекта в массив
@@ -321,22 +321,22 @@ class ElectricMeterController extends Controller
 //            return redirect()->back()->with('errors', 'Выберите даты начала и конца периода периода');
 //        }
 //
-        $path_to_xlsx = '';
+        $path_excel = '';
 
         try {
             foreach ($request->file() as $file) {
                 foreach ($file as $f) {
                     $f->move(storage_path('files/electro_counter'), time().'_'.$f->getClientOriginalName());
-                    $path_to_xlsx = storage_path('files/electro_counter').'/'.time().'_'.$f->getClientOriginalName();
+                    $path_excel = storage_path('files/electro_counter').'/'.time().'_'.$f->getClientOriginalName();
                 }
             }
 
 
-            if (!file_exists($path_to_xlsx)) {
+            if (!file_exists($path_excel)) {
                 return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
             }
 
-            \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function($reader) use($request) {
+            \Maatwebsite\Excel\Facades\Excel::load($path_excel, function($reader) use($request) {
                 $tables = [];
 
 //				return $tables;
@@ -345,11 +345,6 @@ class ElectricMeterController extends Controller
                     // выгружаем данные из объекта в массив
                     $tables[] = $worksheet->toArray();
                 }
-
-                $sql = "SELECT * FROM clients";
-                $r = DB::select($sql);
-
-                dump($r);
 
 //                dump($tables);
 
@@ -365,7 +360,13 @@ class ElectricMeterController extends Controller
                     // Цикл по строкам
 
                     foreach($table as $row) {
-                        dump($row[2].' --- '.$row[9].' --- '.$row[10]);
+                        $electro_counter = $row[2];
+                        $sql = "SELECT * FROM clients WHERE electro_counter = " . $electro_counter;
+                        $r = DB::select($sql);
+
+                        dump($r);
+
+//                        dump($row[2].' --- '.$row[9].' --- '.$row[10]);
                         echo "\n";
                     }
 
