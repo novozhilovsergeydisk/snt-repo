@@ -355,6 +355,8 @@ class ElectricMeterController extends Controller
 
 //                return "Debug ".__LINE__;
 
+                $params = [];
+
                 // Цикл по листам Excel-файла
                 foreach( $tables as $table ) {
                     // Цикл по строкам
@@ -371,13 +373,24 @@ class ElectricMeterController extends Controller
 
                         $sql = "SELECT * FROM clients WHERE electro_counter = " . $electro_counter;
                         $r = DB::select($sql);
+                        $user_id = $r[0]->user_id;
 
-                        dump($r[0]->user_id);
-                        dump($now);
+//                        dump($r[0]->user_id);
+//                        dump($now);
 
-//                        dump($row[2].' --- '.$row[9].' --- '.$row[10]);
+                        $params[] = [
+                            //'id' => $id,
+                            'user_id' => $client_id,
+                            'L' => $aef_id,
+                            'M' => $accruals,
+                            'created_at' => date('Y-m-d'),
+                        ];
+
+                        dump($electro_counter.' --- ' . $l . ' --- ' . $m);
                         echo "\n";
                     }
+
+                    dump($params);
 
 //                    foreach($table as $row) {
 //                        $excludes = [
