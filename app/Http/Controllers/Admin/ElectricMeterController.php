@@ -362,7 +362,7 @@ class ElectricMeterController extends Controller
                     foreach($table as $row) {
                         $electro_counter = $row[2];
 
-                        if ($electro_counter = 'Серийный №') {
+                        if ($electro_counter == 'Серийный №') {
                             continue;
                         }
 
