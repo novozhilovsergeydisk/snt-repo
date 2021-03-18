@@ -363,6 +363,7 @@ class ElectricMeterController extends Controller
                         $electro_counter = $row[2];
                         $l = $row[9];
                         $m = $row[10];
+                        $now = time();
 
                         if ($electro_counter == 'Серийный №') {
                             continue;
@@ -372,8 +373,7 @@ class ElectricMeterController extends Controller
                         $r = DB::select($sql);
 
                         dump($r[0]->user_id);
-                        $now = now();
-                        dump($now->date());
+                        dump($now);
 
 //                        dump($row[2].' --- '.$row[9].' --- '.$row[10]);
                         echo "\n";
