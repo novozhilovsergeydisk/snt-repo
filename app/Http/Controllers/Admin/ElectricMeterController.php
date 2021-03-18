@@ -361,6 +361,8 @@ class ElectricMeterController extends Controller
 
                     foreach($table as $row) {
                         $electro_counter = $row[2];
+                        $l = $row[9];
+                        $m = $row[10];
 
                         if ($electro_counter == 'Серийный №') {
                             continue;
@@ -369,7 +371,7 @@ class ElectricMeterController extends Controller
                         $sql = "SELECT * FROM clients WHERE electro_counter = " . $electro_counter;
                         $r = DB::select($sql);
 
-                        dump($r[0] . ' ' . $r[1]);
+                        dump($r[0]->user_id);
                         $now = now();
                         dump($now);
 
