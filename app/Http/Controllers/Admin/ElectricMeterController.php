@@ -356,6 +356,7 @@ class ElectricMeterController extends Controller
 //                return "Debug ".__LINE__;
 
                 $params = [];
+                $id = 1;
 
                 // Цикл по листам Excel-файла
                 foreach( $tables as $table ) {
@@ -379,12 +380,14 @@ class ElectricMeterController extends Controller
 //                        dump($now);
 
                         $params[] = [
-                            'id' => null,
+                            'id' => $id,
                             'user_id' => $user_id,
                             'L' => $l,
                             'M' => $m,
                             'created_at' => date('Y-m-d'),
                         ];
+
+                        $id++;
 
 //                        dump($electro_counter.' --- ' . $l . ' --- ' . $m);
                         echo "\n";
