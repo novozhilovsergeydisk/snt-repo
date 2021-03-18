@@ -373,7 +373,7 @@ class ElectricMeterController extends Controller
 
                         dump($r[0]->user_id);
                         $now = now();
-                        dump($now);
+                        dump($now->date());
 
 //                        dump($row[2].' --- '.$row[9].' --- '.$row[10]);
                         echo "\n";
