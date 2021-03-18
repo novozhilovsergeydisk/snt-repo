@@ -369,7 +369,7 @@ class ElectricMeterController extends Controller
                         $sql = "SELECT * FROM clients WHERE electro_counter = " . $electro_counter;
                         $r = DB::select($sql);
 
-                        dump($r->user_id);
+                        dump($r['user_id']);
                         $now = now();
                         dump($now);
 
