@@ -386,8 +386,14 @@ class ElectricMeterController extends Controller
                             'created_at' => date('Y-m-d'),
                         ];
 
-                        dump($electro_counter.' --- ' . $l . ' --- ' . $m);
+//                        dump($electro_counter.' --- ' . $l . ' --- ' . $m);
                         echo "\n";
+                    }
+
+                    try {
+                        DB::table('electro_counter_list')->insert($params);
+                    } catch (Exception $e) {
+                        echo $e->getMessage(), PHP_EOL;
                     }
 
                     dump($params);
