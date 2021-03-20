@@ -25,7 +25,7 @@
                     <span class="text-muted">Показания электросчетчиков</span>
                 </h4>
 
-                <table>
+                <table class="table">
                     <thead>
                         <th>
                             Т1 день
