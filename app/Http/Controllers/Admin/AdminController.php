@@ -89,7 +89,7 @@ class AdminController extends Controller
 		$sql = "SELECT d.start_date FROM dealings d LIMIT 1";
 		$dealings_results = DB::select($sql);
 
-        $sql = "SELECT * from electric_counter_list e inner join clients c on e.user_id = clients.user_id";
+        $sql = "SELECT * from electro_counter_list e inner join clients c on e.user_id = clients.user_id";
         $r = DB::select($sql);
 
         dump($r);
