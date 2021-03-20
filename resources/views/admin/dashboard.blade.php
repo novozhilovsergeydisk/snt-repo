@@ -21,7 +21,9 @@
             </div>
 
             <div class="card-body">
-                <h4 class="panel-heading">Показания электросчетчиков</h4>
+                <h4 class="panel-heading">
+                    <span class="text-muted">Показания электросчетчиков</span>
+                </h4>
 
                 <table>
                     <thead>
