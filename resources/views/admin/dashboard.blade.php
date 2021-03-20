@@ -21,7 +21,7 @@
             </div>
 
             <div class="card-body">
-                <h3>Показания электросчетчиков</h3>
+                <h4 class="panel-heading">Показания электросчетчиков</h4>
 
                 <table>
                     <thead>
@@ -33,7 +33,7 @@
                         </th>
 
                     </thead>
-                    
+
                     <tbody>
                         <tr>
                             <td>
