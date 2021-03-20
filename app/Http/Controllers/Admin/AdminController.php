@@ -95,11 +95,11 @@ class AdminController extends Controller
 
         $r = DB::select($sql);
 
-        dump($r[0]);
+        dd($r[0]);
 
-        $l = $r[0]['L'];
-
-        dd($l);
+//        $l = $r[0]['L'];
+//
+//        dd($l);
 
 		if ($dealings_results) {
             $actual_date = $dealings_results[0]->start_date;
