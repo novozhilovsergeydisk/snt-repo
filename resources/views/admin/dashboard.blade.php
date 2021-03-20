@@ -39,10 +39,10 @@
                     <tbody>
                         <tr>
                             <td>
-
+                                {{ l }}
                             </td>
                             <td>
-
+                                {{ m }}
                             </td>
                         </tr>
                     </tbody>
