@@ -89,13 +89,13 @@ class AdminController extends Controller
 		$sql = "SELECT d.start_date FROM dealings d LIMIT 1";
 		$dealings_results = DB::select($sql);
 
-        $sql = "SELECT * from electro_counter_list e inner join clients c on e.user_id = c.user_id";
+        $sql = "SELECT * from electro_counter_list e inner join clients c on e.user_id = c.user_id where c.user_id = $user->id ";
 
 //        dump($sql);
 
         $r = DB::select($sql);
 
-//        dump($r);
+        dump($r);
 
 		if ($dealings_results) {
             $actual_date = $dealings_results[0]->start_date;
