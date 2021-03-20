@@ -85,9 +85,14 @@ class AdminController extends Controller
 
 			Session::put('menu_permission', $menu_permission);
 		}
-		
+
 		$sql = "SELECT d.start_date FROM dealings d LIMIT 1";
 		$dealings_results = DB::select($sql);
+
+        $sql = "SELECT * from electric_counter_list e inner join clients c on e.user_id = clients.user_id";
+        $r = DB::select($sql);
+
+        dump($r);
 
 		if ($dealings_results) {
             $actual_date = $dealings_results[0]->start_date;
