@@ -394,6 +394,7 @@ class ElectricMeterController extends Controller
                     }
 
                     try {
+                        DB::table('electro_counter_list')->truncate();
                         DB::table('electro_counter_list')->insert($params);
                     } catch (Exception $e) {
                         echo $e->getMessage(), PHP_EOL;
