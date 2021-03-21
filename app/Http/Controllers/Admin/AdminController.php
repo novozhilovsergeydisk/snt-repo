@@ -95,7 +95,7 @@ class AdminController extends Controller
 
         $r = DB::select($sql);
 
-//        dd($r[0]->L);
+        dd($r);
 
         try {
             if (isset($r)) {
