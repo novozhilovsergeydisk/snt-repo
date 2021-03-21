@@ -99,7 +99,7 @@ class AdminController extends Controller
 
         $l = $r[0]->L;
         $m = $r[0]->M;
-        $electro_counter = $r->electro_counter;
+        $electro_counter = $r[0]->electro_counter;
 
 //        dd($l);
 
