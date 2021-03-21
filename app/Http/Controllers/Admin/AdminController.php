@@ -97,9 +97,17 @@ class AdminController extends Controller
 
 //        dd($r[0]->L);
 
-        $l = $r[0]->L;
-        $m = $r[0]->M;
-        $electro_counter = $r[0]->electro_counter;
+        try {
+            $l = $r[0]->L;
+            $m = $r[0]->M;
+            $electro_counter = $r[0]->electro_counter;
+        } catch (Exception $e) {
+            $l = '';
+            $m = '';
+            $electro_counter = '';
+
+//            echo $e->getMessage(), PHP_EOL;
+        }
 
 //        dd($l);
 
