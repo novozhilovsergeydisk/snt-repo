@@ -22,7 +22,7 @@
 
             <div class="card-body">
                 <h4 class="panel-heading">
-                    <span class="text-muted">Показания электросчетчика {{ $electro_counter }} на 22 марта 2021 г.</span>
+                    <span class="text-muted">Показания электросчетчика <strong>{{ $electro_counter }}</strong> на 22 марта 2021 г.</span>
                 </h4>
 
                 <table class="table">
