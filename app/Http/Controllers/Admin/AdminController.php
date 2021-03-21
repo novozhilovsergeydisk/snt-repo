@@ -99,6 +99,7 @@ class AdminController extends Controller
 
         $l = $r[0]->L;
         $m = $r[0]->M;
+        $electro_counter = $r->electro_counter;
 
 //        dd($l);
 
@@ -106,7 +107,7 @@ class AdminController extends Controller
             $actual_date = $dealings_results[0]->start_date;
             $actual_date_array = explode('-', $actual_date);
             $actual_date = $actual_date_array[2].'-'.$actual_date_array[1].'-'.$actual_date_array[0];
-            $params = ['actual_date' => 'Статистика по состоянию на ' . $actual_date, 'date_now' => 'Сегодня ' . date('d-m-Y'), 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m];
+            $params = ['actual_date' => 'Статистика по состоянию на ' . $actual_date, 'date_now' => 'Сегодня ' . date('d-m-Y'), 'electro_counter' => $electro_counter, 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m];
         } else {
             $params = ['actual_date' => 'Статистика по состоянию на ' . '-', 'date_now' => 'Сегодня ' . date('d-m-Y'), 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m];
 
