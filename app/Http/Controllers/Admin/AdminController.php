@@ -95,10 +95,10 @@ class AdminController extends Controller
 
         $r = DB::select($sql);
 
-        dd($r);
+//        dd($r);
 
         try {
-            if (isset($r)) {
+            if (count($r)) {
                 $l = $r[0]->L;
                 $m = $r[0]->M;
                 $electro_counter = $r[0]->electro_counter;
