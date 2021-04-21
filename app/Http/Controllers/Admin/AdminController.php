@@ -91,7 +91,7 @@ class AdminController extends Controller
 
         $sql = "SELECT * from electro_counter_list e inner join clients c on e.user_id = c.user_id where c.user_id = $user->id ";
 
-        dd($sql);
+//        dd($sql);
 
         $r = DB::select($sql);
 
