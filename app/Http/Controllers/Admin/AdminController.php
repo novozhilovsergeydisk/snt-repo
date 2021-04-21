@@ -142,6 +142,8 @@ class AdminController extends Controller
 //        Session::regenerate();
 //        dump(Session::all());
 
+        dd($params);
+
         return view('admin.dashboard', $params)->with('test', 'XXX');
 //		return view('admin.index', $params)->with('test', 'XXX');
 	}
