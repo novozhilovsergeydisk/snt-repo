@@ -91,7 +91,7 @@ class AdminController extends Controller
 
         $sql = "SELECT * from electro_counter_list e inner join clients c on e.user_id = c.user_id where c.user_id = $user->id ";
 
-//        dump($sql);
+//        dd($sql);
 
         $r = DB::select($sql);
 
@@ -99,10 +99,12 @@ class AdminController extends Controller
 
         try {
             if (count($r)) {
+                $summ = $r[0]->summ;
                 $l = $r[0]->L;
                 $m = $r[0]->M;
                 $electro_counter = $r[0]->electro_counter;
             } else {
+                $summ = 0;
                 $l = '';
                 $m = '';
                 $electro_counter = '';
