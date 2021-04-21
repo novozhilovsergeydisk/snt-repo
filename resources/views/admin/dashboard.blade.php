@@ -47,6 +47,9 @@
                             <td>
                                 {{ $l }}
                             </td>
+                            <td>
+                                {{ $summ  }}
+                            </td>
                         </tr>
                     </tbody>
 
