@@ -14,7 +14,9 @@
 @section('content')
     <style>
         .main {
-            border: 2px solid red;
+            padding: 12px;
+            border: 3px solid red;
+            border-radius: 5px;
         }
         li {
             list-style-type: none; /* Убираем маркеры */
