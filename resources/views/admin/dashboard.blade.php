@@ -13,6 +13,9 @@
 
 @section('content')
     <style>
+        .main {
+            border: 2px solid red;
+        }
         li {
             list-style-type: none; /* Убираем маркеры */
         }
@@ -25,7 +28,7 @@
                     <span class="text-muted">Общая информация</span>
                 </h3>
 
-                <div>
+                <div class="main">
                     <h4>Объявление</h4>
                     <h5>4 сентября в 16-00</h5>
                     <p><i>Возле правления СНТ состоится</i></p>
