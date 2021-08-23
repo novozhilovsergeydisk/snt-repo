@@ -121,6 +121,10 @@ class AdminController extends Controller
             $actual_date = $dealings_results[0]->start_date;
             $actual_date_array = explode('-', $actual_date);
             $actual_date = $actual_date_array[2].'-'.$actual_date_array[1].'-'.$actual_date_array[0];
+
+            $created_at_array = explode('-', $created_at);
+            $created_at = $created_at_array[2].'-'.$created_at_array[1].'-'.$created_at_array[0];
+
             $params = ['created_at' => $created_at, 'actual_date' => 'Статистика по состоянию на ' . $actual_date, 'date_now' => 'Сегодня ' . date('d-m-Y'), 'electro_counter' => $electro_counter, 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m, 'summ' => $summ];
         } else {
             $params = ['created_at' => $created_at, 'actual_date' => 'Статистика по состоянию на ' . '-', 'date_now' => 'Сегодня ' . date('d-m-Y'), 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m, 'summ' => $summ];
