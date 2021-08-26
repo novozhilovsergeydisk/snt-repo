@@ -39,9 +39,9 @@
             </div>
 
             <div class="card-body">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta.pdf">
+                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta-2021.pdf">
                     <img style="width: 64px;" src="/public/images/adobe_pdf.png" alt="фото">
-                    Смета 2020 - 2021
+                    Проект сметы 2021-2022гг
                 </a>
             </div>
 
