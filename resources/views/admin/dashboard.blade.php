@@ -29,7 +29,7 @@
                 <h3 class="panel-heading">
                     <span class="text-muted">Общая информация</span>
                 </h3>
-                
+
             </div>
 
             <div class="card-body">
