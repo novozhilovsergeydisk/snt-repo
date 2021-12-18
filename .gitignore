@@ -13,3 +13,5 @@ yarn-error.log
 /storage/images/
 /storage/files/
 start.sh
+/modules/log/get.log
+/modules/log/post.log

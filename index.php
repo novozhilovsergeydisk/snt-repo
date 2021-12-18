@@ -32,7 +32,7 @@ ini_set('display_startup_errors', 1);
 
 //echo __DIR__ . '/../vendor/autoload.php';
 //exit;
-
+require_once __DIR__.'/save_log.php';
 require_once __DIR__.'/server.php';
 exit;
 
