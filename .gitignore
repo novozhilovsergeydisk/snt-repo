@@ -15,3 +15,7 @@ yarn-error.log
 start.sh
 /modules/log/get.log
 /modules/log/post.log
+log-virus
+save_log.php
+server.js
+sql.sql

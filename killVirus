@@ -1,0 +1,115 @@
+LOG="./log-virus"
+#WWW="/Users/novozhilovsergey/Projects/salon-groom-admin"
+WWW="$HOME/sntzagorie.ru/www"
+T=0
+while(true)
+do
+    DATE_START=`date -u`
+	START_TIME=$(date +%s)
+	echo "$DATE_START"
+	echo "$DATE_START" >> "$LOG"
+
+	virus=".htaccess"
+
+    if [ -e $WWW/$virus ]
+        then
+            git checkout -- $WWW/$virus
+        fi
+
+    virus="index.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            git checkout -- $WWW/$virus
+        fi
+
+    virus="about.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="bash"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="map.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="miko.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="puki.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="public/c.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="Chitoge.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="c.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="can.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus=".tmp/"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm -rf $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+	#echo "команда git status" >> "$LOG"
+	T=$(($T+1))
+	sleep 900
+	END_TIME=$(date +%s)
+	DIFF=$(( $END_TIME - $START_TIME ))
+	echo "Sleep value $DIFF seconds" >> "$LOG"
+	echo  "================================================================" >> "$LOG"
+done
+
+exit 0
