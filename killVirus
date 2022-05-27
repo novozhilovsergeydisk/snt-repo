@@ -103,6 +103,101 @@ do
             echo "rm $DATE_START - $virus" >> "$LOG"
         fi
 
+virus="c16wn.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="home.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="i82w4.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+virus="lcbm1v.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="leafmailer2.8.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="legion.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="m.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="m3sct.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="modules/log/wp-ayrqb.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="owlmailer.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="public/wp-nsovb.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+virus="xxx.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
 	#echo "команда git status" >> "$LOG"
 	T=$(($T+1))
 	sleep 900
