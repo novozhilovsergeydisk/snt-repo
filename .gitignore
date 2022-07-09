@@ -15,5 +15,6 @@ yarn-error.log
 start.sh
 /modules/log/get.log
 /modules/log/post.log
+/modules/log/get.log.bk
 log-virus
 sql.sql
