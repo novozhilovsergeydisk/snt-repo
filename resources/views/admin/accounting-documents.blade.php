@@ -42,7 +42,7 @@
             <div class="card-body">
                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta_2022.pdf">
                     <img style="width: 64px;" src="/public/images/adobe_pdf.png" alt="фото">
-                    Проект сметы 2022-2023гг
+                    Смета на 2022-2023гг
                 </a>
             </div>
 

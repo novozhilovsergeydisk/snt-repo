@@ -30,7 +30,7 @@
                     <span class="text-muted">Общая информация</span>
                 </h3>
 		
-		<div class="main">
+<!--		<div class="main">
                     <h4>Объявление</h4>
                     <h5>23 июля в 17-00</h5>
                     <p><i>Возле правления СНТ состоится</i></p>
@@ -58,7 +58,7 @@
                     <div>Правление ТСН «СНТ Загорье»</div>
                 </div>
             </div>
-
+-->
             <div class="card-body">
                 <h4 class="panel-heading">
                     <span class="text-muted">Показания электросчетчика <strong><i>{{ $electro_counter }}</i></strong> на {{$created_at}}.</span>
