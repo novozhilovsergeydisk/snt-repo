@@ -31,13 +31,14 @@
                 </a>
             </div>
             
-
+           <!--
             <div class="card-body">
                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/act.pdf">
                     <img style="width: 64px;" src="/public/images/adobe_pdf.png" alt="фото">
                     АКТ ревиз.комиссии на 30.06.2022
                 </a>
             </div>
+           -->
 
             <div class="card-body">
                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta_2022.pdf">
