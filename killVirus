@@ -63,6 +63,30 @@ do
             echo "rm $DATE_START - $virus" >> "$LOG"
         fi
 
+    virus="J-E_M-B_O-T.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="indeeeex.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
+    virus="Cocote.php"
+
+    if [ -e $WWW/$virus ]
+        then
+            rm $WWW/$virus
+            echo "rm $DATE_START - $virus" >> "$LOG"
+        fi
+
     virus="public/c.php"
 
     if [ -e $WWW/$virus ]
