@@ -19,3 +19,4 @@ start.sh
 log-virus
 sql.sql
 kill-virus.sh
+virus-list.txt
