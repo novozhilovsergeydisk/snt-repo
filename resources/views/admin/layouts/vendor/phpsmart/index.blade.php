@@ -104,7 +104,7 @@
         <li class="sidenav-item active__">
           <a href="/admin" class="sidenav-link {{ Request::path() == 'admin' ? 'active' : '' }}">
             <i class="sidenav-icon ion ion-md-home"></i>
-            <div>Главная</div>
+            <div>Главная!</div>
           </a>
         </li>
 

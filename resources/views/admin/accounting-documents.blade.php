@@ -31,19 +31,19 @@
                 </a>
             </div>
             
-           <!--
+           
             <div class="card-body">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/act.pdf">
+                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/act_2023.pdf">
                     <img style="width: 64px;" src="/public/images/adobe_pdf.png" alt="фото">
-                    АКТ ревиз.комиссии на 30.06.2022
+                    АКТ ревиз.комиссии
                 </a>
             </div>
-           -->
+           
 
             <div class="card-body">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta_2022.pdf">
+                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta_2023.pdf">
                     <img style="width: 64px;" src="/public/images/adobe_pdf.png" alt="фото">
-                    Смета на 2022-2023гг
+                    Смета на 2023-2024гг
                 </a>
             </div>
 

@@ -548,4 +548,121 @@ dump($header);
 		
 //		return "Данные успешно занесены в базу данных.";
 	}
+
+
+    public function newUpload(Request $request)
+    {
+
+        $path_to_xlsx = '';
+
+        try {
+	    foreach ($request->file() as $file) {
+                foreach ($file as $f) {
+                    $f->move(storage_path('images'), time().'_'.$f->getClientOriginalName());
+                    $path_to_xlsx = storage_path('images').'/'.time().'_'.$f->getClientOriginalName();
+                }
+            }
+
+            if (!file_exists($path_to_xlsx)) {
+                return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
+            }
+
+
+	    \Maatwebsite\Excel\Facades\Excel::load($path_to_xlsx, function ($reader) use ($request) {
+                $tables = [];
+
+                foreach ($reader->getWorksheetIterator() as $worksheet) {
+                    // выгружаем данные из объекта в массив
+                    $tables[] = $worksheet->toArray();
+                }
+
+                $id = '';
+
+	        // Цикл по листам Excel-файла
+
+foreach ($tables as $table) {
+                    // Цикл по строкам
+                    $i = 1;
+                    $plot ='';
+                    $expense_item = '';
+                    $accrued = 0;
+                    $paid = 0;
+                    $debt = 0;
+                    $overpayment = 0;
+                    foreach ($table as $row) {
+                        if ($row[0] && $row[1]) {
+                            $plot = (string)$row[0];
+
+                            dump('Участок: ' . $row[0] . ' ФИО - ' .  $row[1] . ' Начиcлено - ' . $row[5] . ' Оплачено - ' . $row[6] . ' Долг - ' . $row[7] . ' Переплата -  ' . $row[8]);
+
+                            $pieces = explode(" ", $row[1]);
+
+                            $sql = "SELECT user_id FROM clients WHERE last_name = '$pieces[0]'";
+                            //$client_results = DB::select($sql);
+			    dump($sql);
+                            //dump($client_results);
+
+                        } else {
+                            $expense_item = $row[0];
+                            $accrued = $row[5];
+                            $paid = $row[6];
+                            $debt = $row[7];
+                            $overpayment = $row[8];
+                            print_r('Статья расхода: ' .  $row[0] . ' Начиcлено - ' . $row[5] . ' Оплачено - ' . $row[6] . ' Долг - ' . $row[7] . ' Переплата -  ' .  $row[8]);
+                            echo "<br>";
+
+                            $sql = "SELECT max(id) AS max_id FROM turnover_balance_sheet";
+                            $max_id = DB::select($sql)[0]->max_id;
+			    // $max_id = $turnover_balance_sheet[0]->max_id;
+
+                            if (!$max_id) {
+				$id = 1;                                
+
+				$params = [
+                                    'id' => $id,
+                                    'plot' => $plot,
+                                    'expense_item' => $expense_item,
+                                    'accrued' => str_replace(',', '', $accrued) ? str_replace(',', '', $accrued) : null,
+                                    'paid' => str_replace(',', '', $paid) ? str_replace(',', '', $paid) : null,
+                                    'debt' => str_replace(',', '', $debt) ? str_replace(',', '', $debt) : null,
+                                    'overpayment' => str_replace(',', '', $overpayment) ? str_replace(',', '', $overpayment) : null,
+                                ];
+                            } else {
+                                $params = [
+                                    'id' => $max_id + 1,
+                                    'plot' => $plot,
+                                    'expense_item' => $expense_item,
+				    'accrued' => str_replace(',', '', $accrued) ? str_replace(',', '', $accrued) : null,
+                                    'paid' => str_replace(',', '', $paid) ? str_replace(',', '', $paid) : null,
+                                    'debt' => str_replace(',', '', $debt) ? str_replace(',', '', $debt) : null,
+                                    'overpayment' => str_replace(',', '', $overpayment) ? str_replace(',', '', $overpayment) : null,
+                                ];
+                            }
+			    if ($expense_item !== 'Итого')
+			    	DB::table('turnover_balance_sheet')->insert($params);
+                            
+                            // dump($params);
+                        }
+
+                        $i++;
+
+                        if ($row[0] === 'Итого') continue;
+                    }
+
+//                            DB::table('aef')->insert($params);
+                }
+
+		return redirect()->back()->with('success', 'Файл успешно загружен');
+            });
+
+	    return redirect()->back()->with('success', 'Данные успешно занесены в базу данных');
+	    // return "Данные успешно занесены в базу данных";
+        } catch (Exception $e) {
+            echo $e->getMessage(), PHP_EOL;
+        }
+
+        return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер!');
+        // return "Данные успешно занесены в базу данных @";
+    }
+
 }

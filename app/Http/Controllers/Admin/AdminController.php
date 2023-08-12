@@ -34,15 +34,44 @@ class AdminController extends Controller
 //		return;
 		
 		$fio = '';
-		
+		$plot = '';		
+		$balance = [];
+		$accrued_sum = 0;
+		$paid_sum = 0;
+		$debt_sum = 0;
+        	$overpayment_sum = 0;
+
 		if ($user->id) {
 			$sql = "SELECT a.name, d.accruals, d.payments FROM dealings d, aef a WHERE d.aef_id = a.id AND d.client_id = (SELECT id FROM clients WHERE user_id = $user->id)";
 			$fio_array = DB::select('SELECT * FROM clients WHERE user_id = '.$user->id);
 			$user_id = $user->id;
-			
+
+			// dd('SELECT * FROM clients WHERE user_id = '.$user->id);
+
 			if (isset($fio_array[0])) {
 				$fio = $fio_array[0]->last_name.' '.$fio_array[0]->first_name.' '.$fio_array[0]->middle_name;
+				$plot = $fio_array[0]->plot;
+				$result_turnover_balance_sheet = DB::select("SELECT * FROM turnover_balance_sheet WHERE plot = '" . $plot . "'");
+				// dump($result_turnover_balance_sheet);
+				
+				// $balance = new Array();
+
+				foreach($result_turnover_balance_sheet as $key => $val) {
+					array_push($balance, ['plot' => $val->plot, 'expense_item' => $val->expense_item, 'accrued' => $val->accrued, 'paid' => $val->paid, 'debt' => $val->debt, 'overpayment' => $val->overpayment]);
+					$accrued_sum += $val->accrued;
+					$paid_sum += $val->paid;
+					$debt_sum += $val->debt;
+        				$overpayment_sum += $val->overpayment;
+					// dump($key);
+					// dump($val->plot);
+					// dump('-----');
+				}
+				
+//				dump($accrued_sum);
+
 			}
+
+			// dump($balance);
 
 //			$dealings_result = DB::table('dealings')->select($sql);
 			
@@ -125,9 +154,10 @@ class AdminController extends Controller
 //            $created_at_array = explode('-', $created_at);
 //            $created_at = $created_at_array[2].'-'.$created_at_array[1].'-'.$created_at_array[0];
 
-            $params = ['created_at' => $created_at, 'actual_date' => 'Статистика по состоянию на ' . $actual_date, 'date_now' => 'Сегодня ' . date('d-m-Y'), 'electro_counter' => $electro_counter, 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m, 'summ' => $summ];
+            $params = ['debt_sum' => $debt_sum, 'overpayment_sum' => $overpayment_sum, 'paid_sum' => $paid_sum, 'accrued_sum' => $accrued_sum, 'balance' => $balance, 'user_id' => $user->id, 
+'plot' => $plot, 'created_at' => $created_at, 'actual_date' => 'Статистика по состоянию на 1 июня 2023 г.', 'date_now' => 'Сегодня ' . date('d-m-Y'), 'electro_counter' => $electro_counter, 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m, 'summ' => $summ];
         } else {
-            $params = ['created_at' => $created_at, 'actual_date' => 'Статистика по состоянию на ' . '-', 'date_now' => 'Сегодня ' . date('d-m-Y'), 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m, 'summ' => $summ];
+            $params = ['debt_sum' => $debt_sum, 'overpayment_sum' => $overpayment_sum, 'paid_sum' => $paid_sum, 'accrued_sum' => $accrued_sum, 'balance' => $balance, 'user_id' => $user->id, 'plot' => $plot, 'created_at' => $created_at, 'actual_date' => 'Статистика по состоянию на ' . '-', 'date_now' => 'Сегодня ' . date('d-m-Y'), 'name' => $name, 'fio' => $fio, 'email' => '', 'admin_active' => 'active', 'depts' => $results, 'l' => $l, 'm' => $m, 'summ' => $summ];
 
         }
 

@@ -41,6 +41,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'statistics']], function
 	Route::get('/upload/balance-list',['as' => 'upload_form', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\UploadController@getForm']);
 	
 	Route::post('/upload/balance-list',['as' => 'upload_balance_list', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\UploadController@upload']);
+
+
+
+	Route::post('/upload/new-balance-list',['as' => 'upload_new_balance_list', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\UploadController@newUpload']);
+
+
 	
 	Route::get('/upload/clients',['as' => 'upload_form_clients', 'middleware'=>'App\Http\Middleware\Roles', 'uses' => 'Admin\UploadController@getFormClients']);
 	

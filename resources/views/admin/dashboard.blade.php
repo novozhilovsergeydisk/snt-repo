@@ -13,9 +13,12 @@
 
 @section('content')
     <style>
-        .main {
+        .green-light {
+		color: #86b976;
+	}
+	.main {
             padding: 12px;
-            border: 3px solid red;
+            border: 3px solid #86b976;
             border-radius: 5px;
         }
         li {
@@ -29,6 +32,32 @@
                 <h3 class="panel-heading">
                     <span class="text-muted">Общая информация</span>
                 </h3>
+
+		<h5>Участок No {{ $plot }}</h5>
+
+		<!--<h5>UserID: {{ $user_id }}</h5>-->
+<!--		
+<div class="main">
+			<h1>Объявление</h1>
+                	<h3>15 июля 2023г. в 17-00</h3>
+                	<h3>Возле правления СНТ состоится</h3>
+                	<h3>Очередное общее собрание</h3>
+
+                	<h4><strong>Повестка дня</strong></h4>
+                	<ul>
+                    		<li>1. Прием в члены СНТ новых собственников участков No 5, 37, 54, 73, 74, 78 </li>
+                    		<li>2. Отчет правления о проделанной работе</li>
+                    		<li>3. Утверждение отчета ревизионной комиссии с 01.07.2022 - 30.06.2023 гг </li>
+                    		<li>4. Утверждение расходной сметы на 2023-2024 гг</li>
+                	</ul>
+
+                	<p>
+                    		<strong>
+                        		Регистрация участников с 16-30, при невозможности присутствовать на общем собрании, просим вас заполнить бланк простой письменной формы доверенности своему доверенному лицу
+                    		</strong>
+                	</p>
+		</div>
+-->
 		
 <!--		<div class="main">
                     <h4>Объявление</h4>
@@ -198,40 +227,51 @@
                     $payments = 0;
                     ?>
 
-                    @foreach($depts as $row)
+			@foreach($balance as $row)
+			<tr>
+                            <td>
+                                @if ($row['expense_item'])
+                                {{ $row['expense_item'] }}
+                                @endif
 
-                        <tr>
-                            <td>
-                                {{ $row->name }}
                             </td>
                             <td>
-                                {{ $row->accruals }}
-                            </td>
-                            <td>
-                                {{ $row->payments }}
-                            </td>
-                            <td>
-                                @if ($row->accruals > $row->payments)
-                                    <?php $accruals += ($row->accruals - $row->payments); ?>
-                                    <span class="green">{{ $row->accruals - $row->payments }}</span>
+                                @if ($row['accrued'])
+                                {{ $row['accrued'] }}
                                 @endif
                             </td>
                             <td>
-                                @if ($row->accruals < $row->payments)
-                                    <?php $payments += ($row->accruals - $row->payments); ?>
-                                    <span class="red">{{ $row->accruals - $row->payments }}</span>
+                                @if ($row['paid'])
+                                {{ $row['paid'] }}
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row['debt'])
+                                {{ $row['debt'] }}
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row['overpayment'])
+                                {{ $row['overpayment'] }}
                                 @endif
                             </td>
                         </tr>
-
-                    @endforeach
-
-                    <tr>
-                        <td colspan="3"><span class="bold">Итого:</span></td>
-                        <td><span class="green bold">{{ $accruals }}</span></td>
-                        <td><span class="red bold">{{ $payments }}</span></td>
-                    </tr>
-
+		@endforeach
+			<tr>
+                                <td><strong>Итого:</strong></td>
+                                <td>
+				@if ($accrued_sum) <strong class="green-light">{{ $accrued_sum }} руб.</strong> @endif
+				</td>
+                                <td>
+				@if ($paid_sum) <strong class="green-light">{{ $paid_sum }} руб.</strong> @endif
+				</td>
+                                <td>
+				@if ($debt_sum) <strong class="green-light">{{ $debt_sum }} руб.</strong> @endif
+				</td>
+                                <td>
+				@if ($overpayment_sum) <strong class="green-light">{{ $overpayment_sum }} руб.</strong> @endif
+				</td>
+                        </tr>
                     <tr>
                         <?php
                         $totals_debts = 0;
@@ -245,8 +285,8 @@
                         }
                         ?>
 
-                        <td colspan="3"><span class="bold">Баланс:</span></td>
-                        <td class="center" colspan="4"><span class="center {{--green--}} bold" style="font-weight: bold;">{{ $totals_debts }}</span></td>
+                        <td colspan="3"><span class="bold"></span></td>
+                        <td class="center" colspan="4"><span class="center {{--green--}} bold" style="font-weight: bold;"></span></td>
                     </tr>
                     </tbody>
                 </table>

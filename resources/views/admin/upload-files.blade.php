@@ -115,9 +115,37 @@
                         </div>
                     @endif
                 </div>
+        </div>
 
+	<div class="card mb-4">
+            <div class="card-header">
+                <h3 class="panel-heading">
+                    <span class="text-muted">Форма загрузки файла ведомости 1С</span>
+                </h3>
+            </div>
 
+            <div class="card-body">
+                <form class="form-horizontal pd-12" method="post" action="{{ route('upload_new_balance_list') }}" enctype="multipart/form-data">
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
+                    <style>
+                        .mt-12 {
+                            margin-top: 12px;
+                        }
+
+                        .pd-12 {
+                            padding: 12px !important;
+                        }
+                    </style>
+
+                    <script>
+                        console.log('new form upload');
+                    </script>
+
+                    <input class="btn btn-default mt-12" type="file" multiple name="file_[]">
+                    <button class="btn btn-success mt-12" type="submit"><i class="fa fa-upload"></i> Загрузить</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
