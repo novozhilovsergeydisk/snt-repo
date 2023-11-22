@@ -58,7 +58,6 @@
                 	</p>
 		</div>
 -->
-		
 <!--		<div class="main">
                     <h4>Объявление</h4>
                     <h5>23 июля в 17-00</h5>
@@ -198,8 +197,10 @@
                     <span class="text-muted font-weight-bolder">E-mail:</span> <span>@if ($email) {{ $email }} @endif</span>
                 </p>
 
-                @if ($depts)
-                <h4 class="text-muted text-ellipsis">@yield('welcome-j')</h4>
+                <!--@if ($depts)
+                <h4 class="text-muted text-ellipsis">@yield('welcome-j')</h4>-->
+
+		<h4>Статистика по состоянию на 15 ноября 2023 г.</h4>
                 <hr>
                 <table class="table table-striped table-bordered table-responsive-sm">
                     <thead>
