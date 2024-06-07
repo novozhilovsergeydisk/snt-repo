@@ -33,7 +33,7 @@
             
            
             <div class="card-body">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/act_2023.pdf">
+                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/act_2024.pdf">
                     <img style="width: 64px;" src="/public/images/adobe_pdf.png" alt="фото">
                     АКТ ревиз.комиссии
                 </a>
@@ -41,7 +41,7 @@
            
 
             <div class="card-body">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta_2023.pdf">
+                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/public/pdf/smeta_2024.pdf">
                     <img style="width: 64px;" src="/public/images/adobe_pdf.png" alt="фото">
                     Смета на 2023-2024гг
                 </a>
