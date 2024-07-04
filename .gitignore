@@ -1,3 +1,5 @@
+/vendor.tar
+/.check_htaccess.sh
 /app/phpspreadsheet/
 /u449664.html
 /u449664_laravel_dump.sql
