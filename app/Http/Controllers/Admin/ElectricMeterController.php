@@ -312,8 +312,6 @@ class ElectricMeterController extends Controller
     {
 
 
-
-
 //        if (true) {
 //            $start_date = $request->start_date;
 //            $end_date = $request->end_date;
@@ -335,11 +333,11 @@ class ElectricMeterController extends Controller
             if (!file_exists($path_excel)) {
                 return redirect()->back()->with('errors', 'Выберите файл для загрузки на сервер');
             }
-
+//return $path_excel;
             \Maatwebsite\Excel\Facades\Excel::load($path_excel, function($reader) use($request) {
                 $tables = [];
 
-//				return $tables;
+				return $tables;
 
                 foreach ($reader->getWorksheetIterator() as $worksheet) {
                     // выгружаем данные из объекта в массив
