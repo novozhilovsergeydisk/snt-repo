@@ -109,7 +109,7 @@
                 <!--@if ($depts)
                 <h4 class="text-muted text-ellipsis">@yield('welcome-j')</h4>-->
 
-		<h4>Статистика по состоянию на 1 июля 2023 г.</h4>
+		<h4>Статистика по состоянию на 15 июля 2024 г.</h4>
                 <hr>
                 <table class="table table-striped table-bordered table-responsive-sm">
                     <thead>
